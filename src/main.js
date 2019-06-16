@@ -25,7 +25,9 @@ const dayDate = document.querySelector(".day-and-date");
 const searchInput = document.querySelector("#searchDuty");
 
 if (dayDate) {
-  dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
+  setInterval(() => {
+    dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
+  }, 1000);
 }
 if (tbody) {
   tbody.innerHTML = "";
