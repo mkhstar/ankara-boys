@@ -16,7 +16,7 @@ const startDate = 1560546000000; // 15th June, 2019
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
-const indexCalc = Math.floor(weeksToday) % 4;
+const indexCalc = Math.floor(weeksToday) % users.length;
 const dutyPlaces = ["BATHROOM", "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)", "COOKING AREA AND WOODWORK", "CORRIDOR AND TOILET"];
 
 
@@ -48,10 +48,8 @@ if (searchInput) {
     const rows = tbody.querySelectorAll("tr");
     rows.forEach(row => {
       const userName = row.getAttribute('data-name');
-      if (value.length > 0) {
-        if (userName.toLowerCase().indexOf(value.toLowerCase()) < 0) {
-          row.className = "hide";
-        } else row.className = "";
+      if (value.length > 0 && userName.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+        row.className = "hide";
       } else row.className = "";
     })
   })
