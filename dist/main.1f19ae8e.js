@@ -119,20 +119,24 @@ var startDate = 1560546000000; // 15th June, 2019
 var todaysDate = new Date().getTime();
 var weekInterval = 604800000;
 var weeksToday = (todaysDate - startDate) / weekInterval;
-var indexCalc = Math.floor(weeksToday) % 4;
+var indexCalc = Math.floor(weeksToday) % users.length;
 var dutyPlaces = ["BATHROOM", "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)", "COOKING AREA AND WOODWORK", "CORRIDOR AND TOILET"];
 var tbody = document.querySelector(".duty-content tbody");
 var dayDate = document.querySelector(".day-and-date");
 var searchInput = document.querySelector("#searchDuty");
 
 if (dayDate) {
-  dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
+  setInterval(function () {
+    dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
+  }, 1000);
 }
 
 if (tbody) {
   tbody.innerHTML = "";
   users.forEach(function (user, i) {
-    tbody.innerHTML += "\n    <tr data-name=\"".concat(user.userName, "\">\n    <td>").concat(user.userName, "</td>\n    <td>").concat(dutyPlaces[indexCalc + i], "</td>\n    </tr>\n    ");
+    var dutyIndex = indexCalc + i >= 4 ? 4 - (indexCalc + i) : indexCalc + i;
+    console.log(dutyIndex);
+    tbody.innerHTML += "\n    <tr data-name=\"".concat(user.userName, "\">\n    <td>").concat(user.userName, "</td>\n    <td>").concat(dutyPlaces[dutyIndex], "</td>\n    </tr>\n    ");
   });
 }
 
@@ -141,12 +145,10 @@ if (searchInput) {
     var value = e.target.value;
     var rows = tbody.querySelectorAll("tr");
     rows.forEach(function (row) {
-      var userName = row.getAttribute('data-name');
+      var userName = row.getAttribute("data-name");
 
-      if (value.length > 0) {
-        if (userName.toLowerCase().indexOf(value.toLowerCase()) < 0) {
-          row.className = "hide";
-        } else row.className = "";
+      if (value.length > 0 && userName.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+        row.className = "hide";
       } else row.className = "";
     });
   });
@@ -178,7 +180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "22778" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44278" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
