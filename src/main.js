@@ -30,15 +30,16 @@ const dayDate = document.querySelector(".day-and-date");
 const searchInput = document.querySelector("#searchDuty");
 
 if (dayDate) {
-  setInterval(() => {
-    dayDate.innerHTML =
-      new Date().toDateString() + ", " + new Date().toLocaleTimeString();
-  }, 1000);
+  dayDate.innerHTML =
+    new Date().toDateString() + ", " + new Date().toLocaleTimeString();
 }
 if (tbody) {
   tbody.innerHTML = "";
   users.forEach((user, i) => {
-    const dutyIndex = indexCalc + i >= users.length ? users.length - (indexCalc + i) : indexCalc + i;
+    const dutyIndex =
+      indexCalc + i >= users.length
+        ? users.length - (indexCalc + i)
+        : indexCalc + i;
     tbody.innerHTML += `
     <tr data-name="${user.userName}">
     <td>${user.userName}</td>

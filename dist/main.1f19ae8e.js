@@ -126,9 +126,7 @@ var dayDate = document.querySelector(".day-and-date");
 var searchInput = document.querySelector("#searchDuty");
 
 if (dayDate) {
-  setInterval(function () {
-    dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
-  }, 1000);
+  dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
 }
 
 if (tbody) {
@@ -179,7 +177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45361" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46287" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
