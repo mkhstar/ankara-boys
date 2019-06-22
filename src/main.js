@@ -38,7 +38,7 @@ if (dayDate) {
 if (tbody) {
   tbody.innerHTML = "";
   users.forEach((user, i) => {
-    const dutyIndex = indexCalc + i >= 4 ? 4 - (indexCalc + i) : indexCalc + i;
+    const dutyIndex = indexCalc + i >= users.length ? users.length - (indexCalc + i) : indexCalc + i;
     tbody.innerHTML += `
     <tr data-name="${user.userName}">
     <td>${user.userName}</td>

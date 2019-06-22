@@ -134,8 +134,7 @@ if (dayDate) {
 if (tbody) {
   tbody.innerHTML = "";
   users.forEach(function (user, i) {
-    var dutyIndex = indexCalc + i >= 4 ? 4 - (indexCalc + i) : indexCalc + i;
-    console.log(dutyIndex);
+    var dutyIndex = indexCalc + i >= users.length ? users.length - (indexCalc + i) : indexCalc + i;
     tbody.innerHTML += "\n    <tr data-name=\"".concat(user.userName, "\">\n    <td>").concat(user.userName, "</td>\n    <td>").concat(dutyPlaces[dutyIndex], "</td>\n    </tr>\n    ");
   });
 }
@@ -180,7 +179,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44278" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45361" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
