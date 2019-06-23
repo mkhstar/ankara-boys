@@ -2,9 +2,9 @@ const users = [
   {
     userName: "Musah Kusi Hussein mkhstar"
   },
-  {
-    userName: "Mohammed SharifDeen"
-  },
+  // {
+  //   userName: "Mohammed SharifDeen"
+  // },
   {
     userName: "Vandana Saifullah"
   },
@@ -20,8 +20,8 @@ const weeksToday = (todaysDate - startDate) / weekInterval;
 const indexCalc = Math.floor(weeksToday) % users.length;
 const dutyPlaces = [
   "BATHROOM",
-  "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
-  "COOKING AREA AND WOODWORK",
+  "KITCHEN",
+  // "COOKING AREA AND WOODWORK",
   "CORRIDOR AND TOILET"
 ];
 
