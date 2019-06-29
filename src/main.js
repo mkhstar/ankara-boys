@@ -18,9 +18,11 @@ const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
 const indexCalc = Math.floor(weeksToday) % users.length;
+
 const dutyPlaces = [
   "BATHROOM",
   "KITCHEN",
+  // FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)
   // "COOKING AREA AND WOODWORK",
   "CORRIDOR AND TOILET"
 ];
@@ -38,7 +40,7 @@ if (tbody) {
   users.forEach((user, i) => {
     const dutyIndex =
       indexCalc + i >= users.length
-        ? users.length - (indexCalc + i)
+        ? Math.abs(users.length - (indexCalc + i))
         : indexCalc + i;
     tbody.innerHTML += `
     <tr data-name="${user.userName}">

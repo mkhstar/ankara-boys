@@ -121,7 +121,8 @@ var todaysDate = new Date().getTime();
 var weekInterval = 604800000;
 var weeksToday = (todaysDate - startDate) / weekInterval;
 var indexCalc = Math.floor(weeksToday) % users.length;
-var dutyPlaces = ["BATHROOM", "KITCHEN", // "COOKING AREA AND WOODWORK",
+var dutyPlaces = ["BATHROOM", "KITCHEN", // FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)
+// "COOKING AREA AND WOODWORK",
 "CORRIDOR AND TOILET"];
 var tbody = document.querySelector(".duty-content tbody");
 var dayDate = document.querySelector(".day-and-date");
@@ -134,7 +135,7 @@ if (dayDate) {
 if (tbody) {
   tbody.innerHTML = "";
   users.forEach(function (user, i) {
-    var dutyIndex = indexCalc + i >= users.length ? users.length - (indexCalc + i) : indexCalc + i;
+    var dutyIndex = indexCalc + i >= users.length ? Math.abs(users.length - (indexCalc + i)) : indexCalc + i;
     tbody.innerHTML += "\n    <tr data-name=\"".concat(user.userName, "\">\n    <td>").concat(user.userName, "</td>\n    <td>").concat(dutyPlaces[dutyIndex], "</td>\n    </tr>\n    ");
   });
 }
@@ -179,7 +180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41107" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13270" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
