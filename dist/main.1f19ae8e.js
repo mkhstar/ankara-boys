@@ -115,7 +115,7 @@ var users = [{
 }, {
   userName: "Yusif Mustapha"
 }];
-var startDate = 1560546000000; // 15th June, 2019
+var startDate = 1564474957354; // 30 July, 2019
 
 var todaysDate = new Date().getTime();
 var weekInterval = 604800000;
@@ -180,7 +180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13270" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2386" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -13,7 +13,7 @@ const users = [
   }
 ];
 
-const startDate = 1560546000000; // 15th June, 2019
+const startDate = 1564474957354; // 30 July, 2019
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
