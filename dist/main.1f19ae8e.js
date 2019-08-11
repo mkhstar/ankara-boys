@@ -107,23 +107,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 var users = [{
   userName: "Musah Kusi Hussein mkhstar"
-}, // {
-//   userName: "Mohammed SharifDeen"
-// },
-{
+}, {
+  userName: "Mohammed SharifDeen"
+}, {
   userName: "Vandana Saifullah"
 }, {
   userName: "Yusif Mustapha"
 }];
-var startDate = 1564474957354; // 30 July, 2019
+var startDate = 1565384400000; // 10 August 2019
 
 var todaysDate = new Date().getTime();
 var weekInterval = 604800000;
 var weeksToday = (todaysDate - startDate) / weekInterval;
 var indexCalc = Math.floor(weeksToday) % users.length;
-var dutyPlaces = ["BATHROOM", "KITCHEN", // FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)
-// "COOKING AREA AND WOODWORK",
-"CORRIDOR AND TOILET"];
+var dutyPlaces = ["BATHROOM", "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)", "COOKING AREA AND WOODWORK", "CORRIDOR AND TOILET"];
 var tbody = document.querySelector(".duty-content tbody");
 var dayDate = document.querySelector(".day-and-date");
 var searchInput = document.querySelector("#searchDuty");
@@ -180,7 +177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2386" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "15257" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

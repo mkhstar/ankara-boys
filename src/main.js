@@ -2,9 +2,9 @@ const users = [
   {
     userName: "Musah Kusi Hussein mkhstar"
   },
-  // {
-  //   userName: "Mohammed SharifDeen"
-  // },
+  {
+    userName: "Mohammed SharifDeen"
+  },
   {
     userName: "Vandana Saifullah"
   },
@@ -13,7 +13,7 @@ const users = [
   }
 ];
 
-const startDate = 1564474957354; // 30 July, 2019
+const startDate = 1565384400000; // 10 August 2019
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
@@ -21,9 +21,8 @@ const indexCalc = Math.floor(weeksToday) % users.length;
 
 const dutyPlaces = [
   "BATHROOM",
-  "KITCHEN",
-  // FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)
-  // "COOKING AREA AND WOODWORK",
+  "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
+  "COOKING AREA AND WOODWORK",
   "CORRIDOR AND TOILET"
 ];
 
