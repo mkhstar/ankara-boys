@@ -36,6 +36,11 @@
   margin-bottom: 15px;
 }
 
+.content p {
+  color: white;
+  margin: 30px 0;
+}
+
 
 .content a {
   color: white;

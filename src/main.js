@@ -10,10 +10,13 @@ const users = [
   },
   {
     userName: "Yusif Mustapha"
+  },
+  {
+    userName: "Umar Sharif Asumah Paper"
   }
 ];
 
-const startDate = 1565384400000; // 10 August 2019
+const startDate = new Date('11 July 2020');
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
@@ -23,7 +26,8 @@ const dutyPlaces = [
   "BATHROOM",
   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
   "COOKING AREA AND WOODWORK",
-  "CORRIDOR AND TOILET"
+  "TOILET",
+  "CORRIDOR"
 ];
 
 const tbody = document.querySelector(".duty-content tbody");
