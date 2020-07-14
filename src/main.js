@@ -58,12 +58,26 @@ if (searchInput) {
 
 const showCustomBtn = document.getElementById("show-custom-btn");
 const customDate = document.getElementById("custom-date");
-const customDateModal = document.getElementById('custom-date-modal');
-const customCloseDateModal = document.getElementById('close-modal-custom-date');
+const customDateModal = document.getElementById("custom-date-modal");
+const customCloseDateModal = document.getElementById("close-modal-custom-date");
 
-if (showCustomBtn) showCustomBtn.addEventListener("click", () => customDateModal.classList.add('show'));
+document.addEventListener("click", (e) => {
+  if (event.target == customDateModal) {
+    customDateModal.classList.remove("show");
+    customCloseDateModal.style.display = "none";
+  }
+});
 
-if (customCloseDateModal) customCloseDateModal.addEventListener('click', () => customDateModal.classList.remove('show'))
+if (showCustomBtn)
+  showCustomBtn.addEventListener("click", () =>
+    customDateModal.classList.add("show")
+  );
+
+if (customCloseDateModal)
+  customCloseDateModal.addEventListener("click", () => {
+    customDateModal.classList.remove("show");
+    customCloseDateModal.style.display = "none";
+  });
 
 if (customDate) {
   const date = new Date();
@@ -82,6 +96,7 @@ if (customDate) {
       startDate,
       new Date(chosenDate).getTime()
     );
+    customCloseDateModal.style.display = "block";
   });
 }
 
