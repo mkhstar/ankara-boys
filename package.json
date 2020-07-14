@@ -1,0 +1,22 @@
+{
+  "name": "ankara-boys",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkhstar/ankara-boys.git"
+  },
+  "author": "Kusi Musah Hussein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkhstar/ankara-boys/issues"
+  },
+  "homepage": "https://github.com/mkhstar/ankara-boys#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
