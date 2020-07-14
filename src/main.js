@@ -16,7 +16,7 @@ const users = [
   }
 ];
 
-const startDate = new Date('11 July 2020');
+const startDate = new Date('11 July 2020').getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 const weeksToday = (todaysDate - startDate) / weekInterval;
