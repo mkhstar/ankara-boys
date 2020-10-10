@@ -8,15 +8,15 @@ const users = [
   {
     userName: "Vandana Saifullah",
   },
-  {
-    userName: "Yusif Mustapha",
-  },
+  // {
+  //   userName: "Yusif Mustapha",
+  // },
   {
     userName: "Umar Sharif Asumah Paper",
   },
 ];
 
-const startDate = new Date("11 July 2020").getTime();
+const startDate = new Date("19 September 2020").getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 
@@ -24,8 +24,8 @@ const dutyPlaces = [
   "BATHROOM",
   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
   "COOKING AREA AND WOODWORK",
-  "TOILET",
-  "CORRIDOR",
+  "TOILET AND CORRIDOR",
+  // "CORRIDOR",
 ];
 
 const tbody = document.querySelector(".duty-content tbody");
@@ -62,7 +62,7 @@ const customDateModal = document.getElementById("custom-date-modal");
 const customCloseDateModal = document.getElementById("close-modal-custom-date");
 
 document.addEventListener("click", (e) => {
-  if (event.target == customDateModal) {
+  if (e.target == customDateModal) {
     customDateModal.classList.remove("show");
     customCloseDateModal.style.display = "none";
   }
