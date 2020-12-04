@@ -8,15 +8,15 @@ const users = [
   {
     userName: "Vandana Saifullah",
   },
-  // {
-  //   userName: "Yusif Mustapha",
-  // },
   {
     userName: "Umar Sharif Asumah Paper",
   },
+  {
+    userName: "Yusif Mustapha",
+  },
 ];
 
-const startDate = new Date("19 September 2020").getTime();
+const startDate = new Date("3 October 2020").getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 
@@ -24,8 +24,8 @@ const dutyPlaces = [
   "BATHROOM",
   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
   "COOKING AREA AND WOODWORK",
-  "TOILET AND CORRIDOR",
-  // "CORRIDOR",
+  "CORRIDOR",
+  "TOILET",
 ];
 
 const tbody = document.querySelector(".duty-content tbody");
