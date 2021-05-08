@@ -11,12 +11,12 @@ const users = [
   {
     userName: "Umar Sharif Asumah Paper",
   },
-  {
-    userName: "Yusif Mustapha",
-  },
+  // {
+  //   userName: "Yusif Mustapha",
+  // },
 ];
 
-const startDate = new Date("3 October 2020").getTime();
+const startDate = new Date("1 May 2021").getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 
@@ -24,8 +24,8 @@ const dutyPlaces = [
   "BATHROOM",
   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
   "COOKING AREA AND WOODWORK",
-  "CORRIDOR",
-  "TOILET",
+  "CORRIDOR AND TOILET",
+  // "TOILET",
 ];
 
 const tbody = document.querySelector(".duty-content tbody");
