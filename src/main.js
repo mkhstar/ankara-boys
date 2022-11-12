@@ -16,7 +16,7 @@ const users = [
   },
 ];
 
-const startDate = new Date("11 December 2021").getTime();
+const startDate = new Date("12 November 2022").getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
 
