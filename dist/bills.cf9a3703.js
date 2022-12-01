@@ -117,79 +117,102 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"bills.js":[function(require,module,exports) {
+var recordSelectInput = document.getElementById("add-input-group");
+var addButton = document.getElementById("add-button");
+var initializeButton = document.getElementById("initialize-button");
+var billSummary = document.querySelector(".bill-summary");
+var billContainer = document.querySelector(".bill-container");
+var totalValueElement = document.getElementById("totalValue");
+var distrElement = document.getElementById("distr");
+var usersCountElement = document.getElementById("users-count");
+var generateBtn = document.getElementById("generateBtn");
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+var getTemplate = function getTemplate(next, name, amount, paidBy) {
+  return "\n        <div class=\"item\">\n            <div class=\"name-group\">\n              <label for=\"name-input-".concat(next, "\">Name</label>\n              <input type=\"text\" class=\"name-value\" id=\"name-input-").concat(next, "\" value=\"").concat(name, "\" />\n            </div>\n            <div class=\"amount-group\">\n              <label for=\"amount-input-").concat(next, "\">Amount</label>\n              <input type=\"number\" class=\"amount-value\" id=\"amount-input-").concat(next, "\" value=\"").concat(amount, "\" />\n            </div>\n            <div class=\"paid-by-group\">\n              <label for=\"paid-by-").concat(next, "\">Paid By</label>\n              <input type=\"text\" class=\"paid-by-value\" id=\"paid-by-").concat(next, "\" value=\"").concat(paidBy, "\" />\n            </div>\n            <button type=\"button\" class=\"cancel-button\">Cancel</button>\n        </div> \n");
+};
 
-  return bundleURL;
-}
+initializeButton.addEventListener("click", function () {
+  var data = [{
+    name: "Rent",
+    amount: 600,
+    paidBy: "MKH"
+  }, {
+    name: "Aydat",
+    amount: 300,
+    paidBy: "Yusif"
+  }, {
+    name: "Hot Water",
+    amount: 450,
+    paidBy: "Yusif"
+  }, {
+    name: "Electricity",
+    amount: 200,
+    paidBy: "MKH"
+  }, {
+    name: "Water",
+    amount: 50,
+    paidBy: "MKH"
+  }, {
+    name: "Wifi",
+    amount: 82,
+    paidBy: "Saif"
+  }];
+  billContainer.innerHTML = data.reduce(function (acc, v, i) {
+    return acc + getTemplate(i + 1, v.name, v.amount, v.paidBy);
+  }, "");
+  calculate();
+});
+addButton.addEventListener("click", function () {
+  var childElementCount = billContainer.childElementCount;
+  var next = childElementCount + 1;
+  billContainer.innerHTML += getTemplate(next, "", "", "");
+  calculate();
+});
+billContainer.addEventListener("click", function (e) {
+  var target = e.target;
+  var className = target.getAttribute("class");
+  if (className !== "cancel-button") return;
+  e.stopPropagation();
+  billContainer.removeChild(target.parentElement);
+  calculate();
+});
+billContainer.addEventListener("input", function (e) {
+  var target = e.target;
+  var className = target.getAttribute("class");
+  if (className !== "amount-value") return;
+  e.stopPropagation();
+  calculate();
+});
+generateBtn.addEventListener("click", generateTemplate);
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
+function calculate() {
+  if (!billContainer.childElementCount) {
+    billSummary.classList.remove("show");
     return;
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
+  var total = Array.from(billContainer.children).reduce(function (acc, v) {
+    return acc + Number(v.querySelector(".amount-group .amount-value").value) || 0;
+  }, 0);
+  var totalValue = Number.parseFloat(total).toFixed(2);
+  var usersCount = Number(usersCountElement.value);
+  totalValueElement.innerText = totalValue;
+  distrElement.innerText = "(".concat(totalValue, " / ").concat(usersCount, ") = ").concat(Number.parseFloat(totalValue / usersCount).toFixed(2));
+  billSummary.classList.add("show");
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./../bkg.jpg":[["bkg.10c016e6.jpg","../bkg.jpg"],"../bkg.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function generateTemplate() {
+  console.log("*".concat(new Date().toLocaleString("default", {
+    month: "long"
+  }), " bills*\n\n_Salam alaikum_\n").concat(Array.from(billContainer.children).reduce(function (acc, v) {
+    var name = v.querySelector(".name-value").value;
+    var amount = Number(v.querySelector(".amount-value").value) || 0;
+    var paidBy = v.querySelector(".paid-by-value").value;
+    return acc + '' + ("".concat(name, ": ").concat(Number.parseFloat(amount).toFixed(2), "TL (").concat(paidBy, ")") + "\r\n");
+  }, ""), "\n    \nTotal: *").concat(totalValueElement.innerText, "TL*\n\nEach will contribute: *").concat(distrElement.innerText, "TL*\n    "));
+}
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +416,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","bills.js"], null)
+//# sourceMappingURL=/bills.cf9a3703.js.map
