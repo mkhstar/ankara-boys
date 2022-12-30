@@ -1,4 +1,6 @@
 const recordSelectInput = document.getElementById("add-input-group");
+const resetButton = document.getElementById("reset-button");
+const noResultElement = document.querySelector(".no-results");
 const addButton = document.getElementById("add-button");
 const initializeButton = document.getElementById("initialize-button");
 const billSummary = document.querySelector(".bill-summary");
@@ -20,11 +22,18 @@ const getTemplate = (next, name, amount, paidBy) => `
             </div>
             <div class="paid-by-group">
               <label for="paid-by-${next}">Paid By</label>
-              <input type="text" class="paid-by-value" id="paid-by-${next}" value="${paidBy}" />
+              <select class="paid-by-value" id="paid-by-${next}">
+                ${users.map(user => `<option ${user.short === paidBy ? 'selected': ''} value="${user.short}">${user.userName}</option>`)}
+              </select>
             </div>
             <button type="button" class="cancel-button">Cancel</button>
         </div> 
 `;
+
+resetButton.addEventListener("click", () => {
+  billContainer.innerHTML = "";
+  calculate();
+});
 
 initializeButton.addEventListener("click", () => {
   const data = [
@@ -70,7 +79,7 @@ addButton.addEventListener("click", () => {
   const { childElementCount } = billContainer;
   const next = childElementCount + 1;
 
-  billContainer.innerHTML += getTemplate(next, "", "", "");
+  billContainer.insertAdjacentHTML('beforeend',  getTemplate(next, "", "", ""));
   calculate();
 });
 
@@ -96,6 +105,7 @@ generateBtn.addEventListener("click", generateTemplate);
 function calculate() {
   if (!billContainer.childElementCount) {
     billSummary.classList.remove("show");
+    noResultElement.classList.add('show');
     return;
   }
   const total = Array.from(billContainer.children).reduce(
@@ -113,22 +123,25 @@ function calculate() {
   ).toFixed(2)}`;
 
   billSummary.classList.add("show");
+  noResultElement.classList.remove('show');
 }
 
 function generateTemplate() {
-  console.log(`*${new Date().toLocaleString("default", { month: "long" })} bills*
+  console.log(`*${new Date().toLocaleString("default", {
+    month: "long",
+  })} bills*
 
 _Salam alaikum_
 ${Array.from(billContainer.children).reduce((acc, v) => {
-const name = v.querySelector(".name-value").value;
-const amount = Number(v.querySelector(".amount-value").value) || 0;
-const paidBy = v.querySelector(".paid-by-value").value;
+  const name = v.querySelector(".name-value").value;
+  const amount = Number(v.querySelector(".amount-value").value) || 0;
+  const paidBy = v.querySelector(".paid-by-value").value;
 
-return (
-acc + '' +
-(`${name}: ${Number.parseFloat(amount).toFixed(2)}TL (${paidBy})` +
-"\r\n")
-);
+  return (
+    acc +
+    "" +
+    (`${name}: ${Number.parseFloat(amount).toFixed(2)}TL (${paidBy})` + "\r\n")
+  );
 }, "")}
     
 Total: *${totalValueElement.innerText}TL*

@@ -119,6 +119,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"bills.js":[function(require,module,exports) {
 var recordSelectInput = document.getElementById("add-input-group");
+var resetButton = document.getElementById("reset-button");
+var noResultElement = document.querySelector(".no-results");
 var addButton = document.getElementById("add-button");
 var initializeButton = document.getElementById("initialize-button");
 var billSummary = document.querySelector(".bill-summary");
@@ -129,9 +131,15 @@ var usersCountElement = document.getElementById("users-count");
 var generateBtn = document.getElementById("generateBtn");
 
 var getTemplate = function getTemplate(next, name, amount, paidBy) {
-  return "\n        <div class=\"item\">\n            <div class=\"name-group\">\n              <label for=\"name-input-".concat(next, "\">Name</label>\n              <input type=\"text\" class=\"name-value\" id=\"name-input-").concat(next, "\" value=\"").concat(name, "\" />\n            </div>\n            <div class=\"amount-group\">\n              <label for=\"amount-input-").concat(next, "\">Amount</label>\n              <input type=\"number\" class=\"amount-value\" id=\"amount-input-").concat(next, "\" value=\"").concat(amount, "\" />\n            </div>\n            <div class=\"paid-by-group\">\n              <label for=\"paid-by-").concat(next, "\">Paid By</label>\n              <input type=\"text\" class=\"paid-by-value\" id=\"paid-by-").concat(next, "\" value=\"").concat(paidBy, "\" />\n            </div>\n            <button type=\"button\" class=\"cancel-button\">Cancel</button>\n        </div> \n");
+  return "\n        <div class=\"item\">\n            <div class=\"name-group\">\n              <label for=\"name-input-".concat(next, "\">Name</label>\n              <input type=\"text\" class=\"name-value\" id=\"name-input-").concat(next, "\" value=\"").concat(name, "\" />\n            </div>\n            <div class=\"amount-group\">\n              <label for=\"amount-input-").concat(next, "\">Amount</label>\n              <input type=\"number\" class=\"amount-value\" id=\"amount-input-").concat(next, "\" value=\"").concat(amount, "\" />\n            </div>\n            <div class=\"paid-by-group\">\n              <label for=\"paid-by-").concat(next, "\">Paid By</label>\n              <select class=\"paid-by-value\" id=\"paid-by-").concat(next, "\">\n                ").concat(users.map(function (user) {
+    return "<option ".concat(user.short === paidBy ? 'selected' : '', " value=\"").concat(user.short, "\">").concat(user.userName, "</option>");
+  }), "\n              </select>\n            </div>\n            <button type=\"button\" class=\"cancel-button\">Cancel</button>\n        </div> \n");
 };
 
+resetButton.addEventListener("click", function () {
+  billContainer.innerHTML = "";
+  calculate();
+});
 initializeButton.addEventListener("click", function () {
   var data = [{
     name: "Rent",
@@ -166,7 +174,7 @@ initializeButton.addEventListener("click", function () {
 addButton.addEventListener("click", function () {
   var childElementCount = billContainer.childElementCount;
   var next = childElementCount + 1;
-  billContainer.innerHTML += getTemplate(next, "", "", "");
+  billContainer.insertAdjacentHTML('beforeend', getTemplate(next, "", "", ""));
   calculate();
 });
 billContainer.addEventListener("click", function (e) {
@@ -189,6 +197,7 @@ generateBtn.addEventListener("click", generateTemplate);
 function calculate() {
   if (!billContainer.childElementCount) {
     billSummary.classList.remove("show");
+    noResultElement.classList.add('show');
     return;
   }
 
@@ -200,6 +209,7 @@ function calculate() {
   totalValueElement.innerText = totalValue;
   distrElement.innerText = "(".concat(totalValue, " / ").concat(usersCount, ") = ").concat(Number.parseFloat(totalValue / usersCount).toFixed(2));
   billSummary.classList.add("show");
+  noResultElement.classList.remove('show');
 }
 
 function generateTemplate() {
@@ -209,7 +219,7 @@ function generateTemplate() {
     var name = v.querySelector(".name-value").value;
     var amount = Number(v.querySelector(".amount-value").value) || 0;
     var paidBy = v.querySelector(".paid-by-value").value;
-    return acc + '' + ("".concat(name, ": ").concat(Number.parseFloat(amount).toFixed(2), "TL (").concat(paidBy, ")") + "\r\n");
+    return acc + "" + ("".concat(name, ": ").concat(Number.parseFloat(amount).toFixed(2), "TL (").concat(paidBy, ")") + "\r\n");
   }, ""), "\n    \nTotal: *").concat(totalValueElement.innerText, "TL*\n\nEach will contribute: *").concat(distrElement.innerText, "TL*\n    "));
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -240,7 +250,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50060" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62304" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,21 +1,3 @@
-const users = [
-  {
-    userName: "Musah Kusi Hussein mkhstar",
-  },
-//   {
-//     userName: "Mohammed SharifDeen",
-//   },
-  {
-    userName: "Vandana Saifullah",
-  },
-//   {
-//     userName: "Umar Sharif Asumah Paper",
-//   },
-  {
-    userName: "Yusif Mustapha",
-  },
-];
-
 const startDate = new Date("12 November 2022").getTime();
 const todaysDate = new Date().getTime();
 const weekInterval = 604800000;
@@ -23,8 +5,8 @@ const weekInterval = 604800000;
 const dutyPlaces = [
   "BATHROOM",
   "KITCHEN",
-//   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
-//   "COOKING AREA AND WOODWORK",
+  //   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
+  //   "COOKING AREA AND WOODWORK",
   "CORRIDOR AND TOILET",
   // "TOILET",
 ];

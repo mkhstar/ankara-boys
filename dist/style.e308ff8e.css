@@ -307,7 +307,7 @@ td {
   color: #3b3b3b;
 }
 
-.bill-container .item input, .users-count-group input {
+.bill-container .item input, .bill-container .item select,  .users-count-group input {
   padding: 7px 5px;
   border-radius: 5px;
   color: #575757;
@@ -361,6 +361,23 @@ td {
 }
 .add-group #add-button {
   background-color: purple;
+}
+
+.no-results{
+  margin-top: 10px;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-results.show {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.no-results h1 {
+  color: gray;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

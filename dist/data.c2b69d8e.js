@@ -117,80 +117,23 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"main.js":[function(require,module,exports) {
-var startDate = new Date("12 November 2022").getTime();
-var todaysDate = new Date().getTime();
-var weekInterval = 604800000;
-var dutyPlaces = ["BATHROOM", "KITCHEN", //   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
-//   "COOKING AREA AND WOODWORK",
-"CORRIDOR AND TOILET" // "TOILET",
-];
-var tbody = document.querySelector(".duty-content tbody");
-var dayDate = document.querySelector(".day-and-date");
-var searchInput = document.querySelector("#searchDuty");
-
-if (dayDate) {
-  dayDate.innerHTML = new Date().toDateString() + ", " + new Date().toLocaleTimeString();
-}
-
-if (tbody) {
-  tbody.innerHTML = getTableHtml(startDate, todaysDate);
-}
-
-if (searchInput) {
-  searchInput.addEventListener("keyup", function (e) {
-    var value = e.target.value;
-    var rows = tbody.querySelectorAll("tr");
-    rows.forEach(function (row) {
-      var userName = row.getAttribute("data-name");
-
-      if (value.length > 0 && userName.toLowerCase().indexOf(value.toLowerCase()) < 0) {
-        row.className = "hide";
-      } else row.className = "";
-    });
-  });
-}
-
-var showCustomBtn = document.getElementById("show-custom-btn");
-var customDate = document.getElementById("custom-date");
-var customDateModal = document.getElementById("custom-date-modal");
-var customCloseDateModal = document.getElementById("close-modal-custom-date");
-document.addEventListener("click", function (e) {
-  if (e.target == customDateModal) {
-    customDateModal.classList.remove("show");
-    customCloseDateModal.style.display = "none";
-  }
-});
-if (showCustomBtn) showCustomBtn.addEventListener("click", function () {
-  return customDateModal.classList.add("show");
-});
-if (customCloseDateModal) customCloseDateModal.addEventListener("click", function () {
-  customDateModal.classList.remove("show");
-  customCloseDateModal.style.display = "none";
-});
-
-if (customDate) {
-  var date = new Date();
-  customDate.setAttribute("max", date.toISOString().slice(0, 10));
-  customDate.addEventListener("change", function (e) {
-    var chosenDate = e.target.value;
-    document.querySelector(".day-and-date-modal").innerHTML = new Date(chosenDate).toDateString() + ", " + new Date(chosenDate).toLocaleTimeString();
-    var customTbody = document.querySelector(".modal-table-card tbody");
-    customTbody.innerHTML = getTableHtml(startDate, new Date(chosenDate).getTime());
-    customCloseDateModal.style.display = "block";
-  });
-}
-
-function getTableHtml(startDate, endDate) {
-  var weeksToday = (endDate - startDate) / weekInterval;
-  var indexCalc = Math.floor(weeksToday) % users.length;
-  var html = "";
-  users.forEach(function (user, i) {
-    var dutyIndex = indexCalc + i >= users.length ? Math.abs(users.length - (indexCalc + i)) : indexCalc + i;
-    html += "\n    <tr data-name=\"".concat(user.userName, "\">\n    <td>").concat(user.userName, "</td>\n    <td>").concat(dutyPlaces[dutyIndex], "</td>\n    </tr>\n    ");
-  });
-  return html;
-}
+})({"data.js":[function(require,module,exports) {
+window.users = [{
+  userName: "Musah Kusi Hussein mkhstar",
+  short: "MKH"
+}, //   {
+//     userName: "Mohammed SharifDeen",
+//   },
+{
+  userName: "Vandana Saifullah",
+  short: "Saif"
+}, //   {
+//     userName: "Umar Sharif Asumah Paper",
+//   },
+{
+  userName: "Yusif Mustapha",
+  short: "Yusif"
+}];
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -395,5 +338,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","data.js"], null)
+//# sourceMappingURL=/data.c2b69d8e.js.map
