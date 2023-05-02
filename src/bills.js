@@ -23,7 +23,12 @@ const getTemplate = (next, name, amount, paidBy) => `
             <div class="paid-by-group">
               <label for="paid-by-${next}">Paid By</label>
               <select class="paid-by-value" id="paid-by-${next}">
-                ${users.map(user => `<option ${user.short === paidBy ? 'selected': ''} value="${user.short}">${user.userName}</option>`)}
+                ${users.map(
+                  (user) =>
+                    `<option ${
+                      user.short === paidBy ? "selected" : ""
+                    } value="${user.short}">${user.userName}</option>`
+                )}
               </select>
             </div>
             <button type="button" class="cancel-button">Cancel</button>
@@ -64,8 +69,8 @@ initializeButton.addEventListener("click", () => {
     },
     {
       name: "Wifi",
-      amount: 82,
-      paidBy: "Saif",
+      amount: 105,
+      paidBy: "MKH",
     },
   ];
   billContainer.innerHTML = data.reduce(
@@ -79,7 +84,7 @@ addButton.addEventListener("click", () => {
   const { childElementCount } = billContainer;
   const next = childElementCount + 1;
 
-  billContainer.insertAdjacentHTML('beforeend',  getTemplate(next, "", "", ""));
+  billContainer.insertAdjacentHTML("beforeend", getTemplate(next, "", "", ""));
   calculate();
 });
 
@@ -105,7 +110,7 @@ generateBtn.addEventListener("click", generateTemplate);
 function calculate() {
   if (!billContainer.childElementCount) {
     billSummary.classList.remove("show");
-    noResultElement.classList.add('show');
+    noResultElement.classList.add("show");
     return;
   }
   const total = Array.from(billContainer.children).reduce(
@@ -123,16 +128,18 @@ function calculate() {
   ).toFixed(2)}`;
 
   billSummary.classList.add("show");
-  noResultElement.classList.remove('show');
+  noResultElement.classList.remove("show");
 }
 
 function generateTemplate() {
+  const children = Array.from(billContainer.children);
+  
   console.log(`*${new Date().toLocaleString("default", {
     month: "long",
   })} bills*
 
 _Salam alaikum_
-${Array.from(billContainer.children).reduce((acc, v) => {
+${children.reduce((acc, v) => {
   const name = v.querySelector(".name-value").value;
   const amount = Number(v.querySelector(".amount-value").value) || 0;
   const paidBy = v.querySelector(".paid-by-value").value;
@@ -147,5 +154,25 @@ ${Array.from(billContainer.children).reduce((acc, v) => {
 Total: *${totalValueElement.innerText}TL*
 
 Each will contribute: *${distrElement.innerText}TL*
+
+Total Per User:
+${users
+  .map(
+    (user) =>
+      `${user.short}: ${Number.parseFloat(
+        children.reduce((acc, child) => {
+          const name = child.querySelector(".name-value").value;
+          const amount =
+            Number(child.querySelector(".amount-value").value) || 0;
+          const paidBy = child.querySelector(".paid-by-value").value;
+
+          if (paidBy === user.short) {
+            acc += amount;
+          }
+          return acc;
+        }, 0)
+      ).toFixed(2)}TL`
+  )
+  .join("\n")}
     `);
 }

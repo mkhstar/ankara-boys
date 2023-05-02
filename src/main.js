@@ -7,7 +7,7 @@ const dutyPlaces = [
   "KITCHEN",
   //   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
   //   "COOKING AREA AND WOODWORK",
-  "CORRIDOR AND TOILET",
+  // "CORRIDOR AND TOILET",
   // "TOILET",
 ];
 

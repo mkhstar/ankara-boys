@@ -121,9 +121,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var startDate = new Date("12 November 2022").getTime();
 var todaysDate = new Date().getTime();
 var weekInterval = 604800000;
-var dutyPlaces = ["BATHROOM", "KITCHEN", //   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
+var dutyPlaces = ["BATHROOM", "KITCHEN" //   "FRIDGE AND FLOOR (KITCHEN AND ITS BALCONY)",
 //   "COOKING AREA AND WOODWORK",
-"CORRIDOR AND TOILET" // "TOILET",
+// "CORRIDOR AND TOILET",
+// "TOILET",
 ];
 var tbody = document.querySelector(".duty-content tbody");
 var dayDate = document.querySelector(".day-and-date");
@@ -219,7 +220,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62304" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52623" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -5,11 +5,11 @@ window.users = [
     },
     //   {
     //     userName: "Mohammed SharifDeen",
-    //   },
-    {
-      userName: "Vandana Saifullah",
-      short: "Saif",
-    },
+    // //   },
+    // {
+    //   userName: "Vandana Saifullah",
+    //   short: "Saif",
+    // },
     //   {
     //     userName: "Umar Sharif Asumah Paper",
     //   },
