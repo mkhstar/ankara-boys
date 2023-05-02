@@ -69,7 +69,7 @@ initializeButton.addEventListener("click", () => {
     },
     {
       name: "Wifi",
-      amount: 105,
+      amount: 121.9,
       paidBy: "MKH",
     },
   ];
