@@ -143,7 +143,7 @@ resetButton.addEventListener("click", function () {
 initializeButton.addEventListener("click", function () {
   var data = [{
     name: "Rent",
-    amount: 600,
+    amount: 1500,
     paidBy: "MKH"
   }, {
     name: "Aydat",
@@ -163,7 +163,7 @@ initializeButton.addEventListener("click", function () {
     paidBy: "MKH"
   }, {
     name: "Wifi",
-    amount: 105,
+    amount: 121.9,
     paidBy: "MKH"
   }];
   billContainer.innerHTML = data.reduce(function (acc, v, i) {
@@ -263,7 +263,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52623" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49760" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

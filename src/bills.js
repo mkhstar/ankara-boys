@@ -44,7 +44,7 @@ initializeButton.addEventListener("click", () => {
   const data = [
     {
       name: "Rent",
-      amount: 600,
+      amount: 1500,
       paidBy: "MKH",
     },
     {

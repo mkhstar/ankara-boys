@@ -1,6 +1,6 @@
-const startDate = new Date("12 November 2022").getTime();
+const startDate = new Date("24 June 2023").getTime();
 const todaysDate = new Date().getTime();
-const weekInterval = 604800000;
+const weekInterval = 1_209_600_000; // two weeks in ms
 
 const dutyPlaces = [
   "BATHROOM",
